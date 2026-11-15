@@ -47,12 +47,12 @@ Measured on the 24 labeled tickets. A detail counts as caught only if the redact
 | DATE | 10 | 9 | 90% |
 | EMAIL | 9 | 9 | 100% |
 | MEMBER_ID | 7 | 7 | 100% |
-| NAME | 17 | 12 | 71% |
+| NAME | 17 | 13 | 76% |
 | PHONE | 7 | 6 | 86% |
 | SSN | 1 | 1 | 100% |
-| **All** | **56** | **47** | **84%** |
+| **All** | **56** | **48** | **86%** |
 
-Precision is 96%: of 49 things flagged, 47 were real personal details.
+Precision is 96%: of 50 things flagged, 48 were real personal details.
 
 Reproduce it with `python evals/run_deid_eval.py`, which also lists every miss and false positive.
 
@@ -67,7 +67,7 @@ The test set includes hard cases on purpose. The current misses:
 
 And two false positives: the company's own support number and a vet clinic's street address were redacted, though neither is a customer's personal detail.
 
-Rule-based detection is predictable and easy to audit, which matters for regulated data, but 84% recall is not good enough to rely on alone. The next step is to close the cheap gaps with better rules, then compare against a named-entity model for names.
+Rule-based detection is predictable and easy to audit, which matters for regulated data, but 86% recall is not good enough to rely on alone. The next step is to close the cheap gaps with better rules, then compare against a named-entity model for names.
 
 ## Design choices
 
@@ -87,7 +87,7 @@ pip install pytest && pytest       # tests
 
 ## Roadmap
 
-1. Fix the cheap misses: more date formats, capitalized "My daughter ..." phrases, addresses with a direction suffix.
+1. Fix the cheap misses: more date formats, addresses with a direction suffix.
 2. Write a small knowledge base of support articles for the agent to ground its replies in.
 3. Build the agent that drafts replies from redacted tickets.
 4. Evaluate the drafts: is the reply correct, grounded in the knowledge base, and free of leaked details?
