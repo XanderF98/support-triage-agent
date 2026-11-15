@@ -37,7 +37,7 @@ PATTERNS: list[tuple[str, re.Pattern]] = [
 
 # Phrases that introduce a name the ticket record may not contain.
 NAME_INTRO = re.compile(
-    r"\b(?:my name is|this is|I am|I'm|on behalf of|my (?:husband|wife|partner|son|daughter|mother|father),?)"
+    r"\b(?:my name is|this is|I am|I'm|on behalf of|[Mm]y (?:husband|wife|partner|son|daughter|mother|father),?)"
     r" ((?:[A-Z][a-z]+)(?: [A-Z][a-z]+)?)"
 )
 

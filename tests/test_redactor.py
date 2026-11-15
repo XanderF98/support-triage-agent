@@ -37,3 +37,9 @@ def test_text_without_personal_details_is_unchanged():
 def test_restore_leaves_unknown_placeholders_alone():
     _, mapping = redact("Call 206-555-0142.")
     assert restore("Reached [PHONE_1], not [PHONE_9].", mapping) == "Reached 206-555-0142, not [PHONE_9]."
+
+
+def test_name_introduction_matches_at_start_of_sentence():
+    redacted, _ = redact("My daughter Layla wants to be added. Also my son Theo.")
+    assert "Layla" not in redacted
+    assert "Theo" not in redacted
